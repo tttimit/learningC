@@ -1,5 +1,6 @@
 /* ex10.c -- 编写一个函数，读取10个字符串或者遇到EOF，哪个先发生就直接终止读取。
 还要有菜单选择功能 */
+//TODO go on
 #include <stdio.h>
 #include <string.h>
 #define MAX 81
