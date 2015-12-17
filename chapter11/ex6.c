@@ -1,31 +1,59 @@
-/* ex6.c -- strncpy(s1, s2, n) 函数从s2复制n个字符给s1，并且在必要的时候截断s2或为其填充额外的空字符。如果s2的长度等于或者大于n，目标字符串就没有标志结束的空字符。函数返回s1。自己编写这个函数，并在一个使用循环语句为这个函数提供输入的完整程序中进行测试。*/
+/* ex6.c -- �Լ�ʵ��strncpy(s1, s2, n)���� */
 #include <stdio.h>
-#define MAX 81
-char * strncpy(char *, char *, int);
-int get_input(char *， char *, int *);
+#include <string.h>
+#define N 10
+char * strncpy1(char *, char *, int);
+int get_input(char *);
 int main(void)
 {
-	char str1[MAX];
-	char str2[MAX];
-	int  len;
+    char str1[N];
+    char str2[N];
+    int n = N;
     char * ptr;
-
-	while(get_input(str1, str2, &len) != 0)
-	{
-		printf("您的输入为%s, %s, %d'n", str1, str2, *len);
-		ptr = strcpy(str1, str2, &len);
-		printf("%s\n", ptr);
-	}
-
-	return 0;
+    
+    while(get_input(str2) == 1)
+    {
+        printf("�������Ҫ���Ƶ��ַ���Ϊ��%s\n", str2);
+        ptr = strncpy1(str1, str2, n);
+        puts(str1);
+    }
+    
+    return 0;
 }
 
-char * strncpy(char * str1, char * str2, int * length)
+int get_input(char *str2)
 {
-	int i;
+//    int res;
+    
+    printf("������Ҫ���и��Ƶ��ַ���(��������˳�)��\n");
+    gets(str2);
+//    res = scanf("%s", str2);
+    if(*str2 == '\0')
+        return 0;
+    return 1;
+    
+//    if(getchar() == '\n')
+//        continue;
+//    return 1;
+}
 
-	for(i=0; i <length; i++)
-	{
-		*(str + i) = * (str2 + i);
-	}
-	
+char * strncpy1(char *str1, char *str2, int n)
+{
+    int i;
+    int str2len;
+    
+    str2len = strlen(str2);
+    for(i=0; i < (str2len>n?n:str2len); i++)
+    {
+        *(str1 + i) = *(str2 + i);
+    }
+    if(str2len < n)
+    {
+        for(i = str2len ; i < strlen(str1); i++)
+        {
+            *(str1 + i) = '\0';
+        }
+    }
+//    puts("������ɣ�\n");
+    return str1;
+}
