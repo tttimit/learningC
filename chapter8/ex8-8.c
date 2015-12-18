@@ -1,16 +1,16 @@
-/* ex8-8.c -- ±¬Õ¨ */
+/* ex8-8.c -- ç®€å•çš„è®¡ç®—å™¨ï¼Œç”¨æˆ·å¯ä»¥é€‰æ‹©éœ€è¦è¿›è¡Œå“ªç§å››åˆ™è¿ç®—ï¼Œ
+è¯¥ç¨‹åºèƒ½å¤Ÿè¿›è¡Œè¾“å…¥æ£€æŸ¥å¹¶å¯¹ç”¨æˆ·è¿›è¡Œæç¤º*/
 #define ADD '+'
 #define SUB '-'
 #define MUL '*'
 #define DIV '/'
 #include <stdio.h>
-int get_choice(void); // ´¦Àí²Ëµ¥Ñ¡ÏîºÍºÏ·¨ĞÔÅĞ¶Ï 
-float get_input(void); // ´¦ÀíÊı¾İÊäÈëºÏ·¨ĞÔÅĞ¶Ï 
+int get_choice(void); // æ˜¾ç¤ºèœå•å¹¶è¯»å–è¾“å…¥ã€å¤„ç†è¾“å…¥åˆæ³•æ€§
+float get_input(void); // å¤„ç†ç”¨æˆ·è¾“å…¥çš„æ•°å­—åˆæ³•æ€§é—®é¢˜
 int main(void)
 {
 	float num1, num2, result;
 	int ch;
-	_Bool quit;
 
 	ch = get_choice();
 	while(ch != 'q')
@@ -19,52 +19,41 @@ int main(void)
 		num1 = get_input();
 		printf("Enter second number: ");
 		num2 = get_input();
-		quit = 0;
 		switch(ch)
 		{
 			case 'a':
-				printf("%f %c %f = %.2f\n", num1, ADD, num2, num1 + num2);
+				printf("%f %c %f = %f\n", num1, ADD, num2, num1 + num2);
 				break;
 			case 's':
-				printf("%f %c %f = %.2f\n", num1, SUB, num2, num1 - num2);
+				printf("%f %c %f = %f\n", num1, SUB, num2, num1 - num2);
 				break;
 			case 'm':
-				printf("%f %c %f = %.2f\n", num1, SUB, num2, num1 * num2);
+				printf("%f %c %f = %f\n", num1, SUB, num2, num1 * num2);
 				break;
 			case 'd':
-				printf("%f %c %f = %.2f\n", num1, SUB, num2, num1 / num2);
+				printf("%f %c %f = %f\n", num1, SUB, num2, num1 / num2);
 				break;
-			case 'q':
-			    printf("Bye.\n");
-			    quit = 1;
-			    break;
 			defalut:
-				printf("³ÌĞò·¢ÉúÒì³££¡\n");
+				printf("ç¨‹åºå‡ºç°æœªçŸ¥é”™è¯¯\n");
 		}
-		if(!quit)
-		  ch = get_choice();
+		ch = get_choice();
 	}
 	return 0;
 }
 
 int get_choice(void)
 {
-	char ch;
+	int ch;
 
 	printf("Enter the operation of your choice:\n");
-	printf("a.add \t\t s.subtrach\n");
+	printf("a.add \t s.subtrach\n");
 	printf("m.multiply \t d.divide\n");
 	printf("q.quit\n");
-	ch = getchar();
-	printf("ÄúÊäÈëµÄÊÇ%c\n", ch);
+	ch = scanf("%c", &ch);
 	while(ch != 'a' && ch != 's' && ch != 'm' && ch != 'd' && ch != 'q')
 	{
-	    while(getchar() == '\n')
-	       continue;
-		printf("ÄúÑ¡ÔñµÄ¹¦ÄÜ²»´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+		printf("æ‚¨çš„è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
 		ch = scanf("%c", &ch);
-		while(getchar()== '\n')
-		    continue;
 	}
 	return ch;
 }
@@ -73,18 +62,13 @@ float get_input(void)
 {	
 	float num;
 	int res;
-    char str[40];
 
-	while(scanf("%f", &num) != 1)
+	res = scanf("%f", &num);
+	while(res == 0)
 	{
-	    scanf("%s", str);
-	    while(getchar() == '\n')
-	       continue;
-		printf("%s is not a number.\n", str);
+		printf("%s is not a number.\n", num);
 		printf("Please enter a number, such as 2.5, -1.7E8, or 3: ");
 		res = scanf("%f", &num);
-		while(getchar() == '\n')
-		    continue;
 	}
 	return num;
 }	

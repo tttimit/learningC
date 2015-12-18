@@ -1,8 +1,11 @@
-/* 编写一个程序，输入以下文字并发出报警声 */
+/* 编写一个程序，要求输入一个ASCII码值，然后输出对应的字符 */
 #include <stdio.h>
 int main(void)
 {
-	printf("\a");
-	printf("Startled by the sudden sound, Sally shouted, \"By the Great Pumpkin, what was that!\"\n");
+ 	int value;
+
+	printf("Please enter the value: ");
+	scanf("%d", &value);
+	printf("You enter %d, and the char is %c\n", value, value);
 	return 0;
 }

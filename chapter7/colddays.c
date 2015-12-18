@@ -1,4 +1,4 @@
-/* coladays.c -- 求出温度低于零度的天数的百分率 */
+/* colddays.c --求出温度低于零度的天数的百分比 */
 #include <stdio.h>
 int main(void)
 {
@@ -15,10 +15,10 @@ int main(void)
 		if(temperature < FREEZING)
 			cold_days++;
 	}
-	if(0 != all_days)
+	if(all_days != 0)
 		printf("%d days total: %.1f%% were below freezing.\n",
 				all_days, 100.0 * (float)cold_days / all_days);
 	if(all_days == 0)
-		printf("No date entered!\n");
+		printf("No data entered!\n");
 	return 0;
 }
