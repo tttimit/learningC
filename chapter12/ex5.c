@@ -6,5 +6,9 @@ inc main(void)
 {
     generate100();
     sort_numbers();
-    
+	    
 }
+
+void generate100(int *)
+{
+	
