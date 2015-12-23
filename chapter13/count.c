@@ -1,4 +1,4 @@
-/* count.c -- 使用标准I/O */
+/* count.c -- 使用标准I/O 打印并统计文件中的字符数*/
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char * argv[])

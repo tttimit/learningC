@@ -19,7 +19,7 @@ int main(void)
         fprintf(fp, "%s ", words);
     }
     puts("File contents: ");
-    rewind(fp);
+    rewind(fp);     //将指针恢复到文件开始处
     while(fscanf(fp, "%s", words)== 1)
         puts(words);
     if(fclose(fp) != 0)
