@@ -12,7 +12,7 @@ int main(int argc, char * argv[])
     char file1[MAX], file2[MAX];    //保存文件名
     FILE *f1, *f2;
     char line1[MAX], line2[MAX];    //每次读取一行的内容
-    char * ptr1, * ptr2 ;
+    char * ptr1, * ptr2;
     
     ptr1 = file1;
     ptr2 = file2;
@@ -49,7 +49,8 @@ int main(int argc, char * argv[])
     {
         if(ptr1 != NULL && ptr2 != NULL)
         {
-            ptr1 = strcat(ptr1, ptr2);
+			ptr1[strlen(ptr1)-1] = '\0';
+			ptr1 = strcat(ptr1, ptr2);
             fputs(ptr1, stdout);
         }
         else if(ptr2 == NULL)
