@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #define MAX 81
-void create(int [][30]);      //传入一个文件名，创建20*30的单数字字符矩阵并保存该文件
+void create(int (*)[30]);      //传入一个文件名，创建20*30的单数字字符矩阵并保存该文件
 void anti_peak(int [][30]);     //消除尖峰
 void arr2file(FILE *, int [][30]);
+int floor(double num);
 
 int main(void)
 {
@@ -17,7 +17,7 @@ int main(void)
     char *ptr2;
     FILE * fsrc, * fimg;
     int ch;
-    int  * arr[30];
+    int (*arr)[30];
 
     printf("please choose a name for the file: ");
     scanf("%s", fname1);
@@ -65,9 +65,10 @@ void create(int arr[][30])
             arr[row][col] = rand() % 10 + 48;
         }
     }
+	printf("create arr finished.\n");
 }
 
-void anti_peak(int arr[][30])
+void anti_peak(int (*arr)[30])
 {
     int row, col;
     int ch;
@@ -122,9 +123,10 @@ void anti_peak(int arr[][30])
             }
         }
     }
+	printf("anti-peak finished.\n");
 }
 
-void arr2file(FILE *fptr, int arr[][30])
+void arr2file(FILE *fptr, int (*arr)[30])
 {
     int row, col;
     
@@ -136,4 +138,10 @@ void arr2file(FILE *fptr, int arr[][30])
         }
         fputc('\n', fptr);
     }
+	printf("arr to file finished.\n");
+}
+
+int floor(double num)
+{
+	return (int)num;
 }
