@@ -26,14 +26,14 @@ int main(void)
     rewind(pbooks);
     while(count < MAXBKS && fread(&library[count], size, 1, pbooks) == 1)
     {
-        if(count == 1)
+        if(count == 0)
             puts("Current countents of book.dat: ");
         printf("%s by %s: $%.2f\n", library[count].title,
             library[count].author, library[count].value);
         count++;
     }
     filecount = count;
-    if(count =  MAXBKS)
+    if(count ==  MAXBKS)
     {
         fputs("The book.dat file is full.", stderr);
         exit(2);
@@ -59,7 +59,7 @@ int main(void)
         for(index = 0; index < count; index++)
         {
             printf("%s by %s: $%.2f\n", library[index].title,
-                        library[count].author, library[count].value);
+                        library[index].author, library[index].value);
             fwrite(&library[filecount], size, count-filecount, pbooks);
         }
     }
