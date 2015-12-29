@@ -18,7 +18,8 @@ int main(void)
     FILE * pbooks;
     int size = sizeof(struct book);
     
-    if((pbooks = fopen("book.dat", "a+b")) == NULL)
+    if((pbooks = fopen("book.dat", "a+b")) == NULL)//a+允许读入整个文件，从末尾添加
+                                                    //b是以二进制模式读入
     {
         fputs("Can't open book.dat file\n", stderr);
         exit(1);
@@ -26,6 +27,7 @@ int main(void)
     rewind(pbooks);
     while(count < MAXBKS && fread(&library[count], size, 1, pbooks) == 1)
     {
+//        printf("reading library[%d].\n", count);
         if(count == 0)
             puts("Current countents of book.dat: ");
         printf("%s by %s: $%.2f\n", library[count].title,
@@ -43,16 +45,16 @@ int main(void)
     while(count < MAXBKS && gets(library[count].title) != NULL &&
             library[count].title[0] != '\0')
     {
+//        printf("collecting library[%d] data.\n", count);
         puts("Now enter the author.");
         gets(library[count].author);
         puts("Now enter the value.");
         scanf("%f", &library[count++].value);
         while(getchar() != '\n')
-            continue;
+            continue;               //清除输入行
         if(count < MAXBKS)
             puts("Enter the next title.");
     }
-    
     if(count > 0)
     {
         puts("Here is the list of your books: ");
@@ -60,8 +62,8 @@ int main(void)
         {
             printf("%s by %s: $%.2f\n", library[index].title,
                         library[index].author, library[index].value);
-            fwrite(&library[filecount], size, count-filecount, pbooks);
         }
+        fwrite(&library[filecount], size, count-filecount, pbooks); //一次性写入
     }
     else
         puts("No books? Too bad.\n");

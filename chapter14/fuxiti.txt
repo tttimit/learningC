@@ -1,0 +1,22 @@
+fuxiti.txt 第14章复习题
+1.
+    关键字应该是struct而不是structure；
+    最后一行定义末尾应该添加分号
+    最后的右花括号后，应该有个分号
+    
+2.
+    6 1
+    22 Spiffo Road
+    S p
+
+3.
+    struct month{
+        char * monthname;
+        char suoxie[3];
+        int daycount;
+        int yuefenhao;
+    };
+    
+4.
+    编程
+
