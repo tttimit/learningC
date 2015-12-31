@@ -44,7 +44,7 @@ int main(void)
                 amonth.suoxie = "Jan.";
                 break;
             case 2:
-                amonth.mname = "Feberary";
+                amonth.mname = "February";
                 amonth.suoxie = "Feb.";
                 break;
             case 3:

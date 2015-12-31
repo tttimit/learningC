@@ -18,5 +18,90 @@ fuxiti.txt 第14章复习题
     };
     
 4.
-    编程
+    struct month months[12] =
+    {
+        {"January", "Jan", 31, 1},
+        {"February", "Feb", 28, 2},
+        {"March", "Mar", 31, 3},
+        {"April", "Apr", 30, 4},
+        {"May", "may", 31, 5},
+        {"June", "Jun", 30, 6},
+        {"July", "Jul", 31, 7},
+        {"August", "Aug", 31, 8},
+        {"September", "Sep", 30, 9},
+        {"October", "Oct", 31, 10},
+        {"November", "Nov", 30, 11},
+        {"December", "Dec", 31, 12}
+    };
+
+5.
+    编程 fuxiti5.c
+    
+6.
+    编程 fuxiti6.c
+    
+7.
+    a.  6
+        Arcturan
+        cturan （函数接收一个指针。。+2相当于右移2位）
+
+    b.  deb.title.last;
+        pb->title.last;
+    
+    c.
+        编程 fuxiti7.c
+    
+8.
+    a.  willie.born
+    b.  pt->born
+    c.  scanf("%d", &(willie.born));    //答案没有加括号直接&willie.born
+    d.  scanf("%d", &(ptr->born));      //同上，直接&ptr->born
+    e.  scanf("%s", willie.name.lname);
+    f.  scanf("%s", ptr->name.lname);
+    g.  willie.name.fname[2]
+    h.  strlen(willie.name.fname) + strlen(willie.name.lname)
+    
+9.
+    struct car {
+        char car_name[30];
+        int horse_power;
+        int level_mpg;      //float emampg;
+        float zhouju;       //float wbase;
+        float times_old;    //int year;
+    };
+        
+10. //答案考虑了gas大于零和不大于零的情况
+    //还有a中，并不是直接修改的结构，所以需要将返回的结构赋值给原结构才行
+    //b中，操作的是地址，因此修改的就是原来结构的值
+    a.  struct gas cal_mpg(struct gas)
+        {
+            gas.mpg = gas.distance / gas.gals;
+            return gas;
+        }
+
+    b.  void cal_mpg(struct gas * ptr)
+        {
+            ptr->mpg = ptr->distange / ptr->gals;
+        }
+        
+11.
+    enum choices = {no, yes, maybe};    //默认情况下no=0，yes=1，maybe=3
+    //可以显式声明：enum choices = {no = 0, yes = 1; maybe = 2};
+    
+12.
+    char * ptr(char *, char);
+    //答案为： char * (* pfun)(char *, char);
+    //可以先写一个，然后用(* ptr) 代替原来的函数名
+
+13.
+    double fun1(double d1, double d2);
+    double fun2(double d1, double d2);
+    double fun3(double d1, double d2);
+    double fun4(double d1, double d2);
+    
+    double (*)(double, double) ptr[4] = {&fun1, &fun2, &fun3, &fun4};
+    //答案： double (*pf1[4])(double, double) = {fun1, fun2, fun3, fun4};
+    //或者使用：typedef double (*ptype)(double, double);
+    //  ptype pf[4] = {fun1, fun2, fun3, fun4};
+
 
