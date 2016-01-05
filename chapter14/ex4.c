@@ -21,6 +21,7 @@ struct pp{
 	struct fullname name;
 };
 void print(const struct pp names[], int);
+void print1(const char * , const char * , const char *, const char *);  //b
 int main(void)
 {
 	struct pp names[LENG] = {
@@ -30,8 +31,15 @@ int main(void)
 		{"310", {"Jinping","" , "Xi"}},
 		{"333", {"Edison", "Hingwa", "Chan"}}
 	};
+	int i;
+	struct pp t;
 	
-	print(names, LENG);
+//	print(names, LENG);
+    for(i=0; i < LENG; i++)
+    {
+        t = names[i];
+        print1(t.ssnum, t.name.fname, t.name.mname, t.name.lname);
+    }
 
 	return 0;
 }
@@ -50,7 +58,21 @@ void print(const struct pp names[], int length)
 		}
 		else
 		{		
-			printf("%s, %s %c. - %s\n", t.name.fname, t.name.lname, t.name.mname[0], t.ssnum);
+			printf("%s, %s %c. - %s\n", t.name.fname, t.name.lname,
+                    t.name.mname[0], t.ssnum);
 		}
 	}
+}
+
+void print1(const char * ssnum, const char * fname, const char * mname,
+                const char * lname )
+{
+    if(strlen(mname) == 0)
+    {
+        printf("%s, %s - %s\n", fname, lname, ssnum);
+    }
+    else
+    {
+        printf("%s, %s %c. - %s\n", fname, lname, mname[0], ssnum);
+    }
 }
