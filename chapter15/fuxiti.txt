@@ -6,6 +6,55 @@
 	d. 0111 0111
 	
 2.
-	a. 13 025 0x15
-	b. 
-	 
+	a. 13  025  0x15
+	b. 45  0225 0x55
+	c. 76  0114 0x48
+	d. 157 0235 0x9d
+
+3.
+	a. 1111 1100 
+	b. 0000 0010
+	c. 0000 0111
+	d. 0000 0111
+	e. 0000 0101
+	f. 0000 0011
+	g. 0001 1100
+	
+4. 
+	a. 1111 1111
+	b. 1
+	c. 0000 0000
+	d. 1
+	e. 0000 0110
+	f. 1
+	g. 0001 0100 
+	
+5.
+	二进制：0111 1111
+	十进制：127
+	八进制：0177
+	十六进制：0xef
+	
+6.
+	*=2与<<=1是等价的
+	|=和+=并不等价，只是在此情景下，两个操作的结果一致，所以可以替换
+
+7.
+	 a.
+		 struct{
+				unsigned int soft_drive_number :1;
+				unsigned int 				   :1;
+				unsigned int cd_rom_number     :2;
+				unsigned int 				   :1;
+				unsigned int hard_drider_number:2;
+		} tinkerbell;
+	b.
+		反着来就行了
+		 struct{
+				unsigned int hard_drider_number :1;
+				unsigned int 				   :1;
+				unsigned int cd_rom_number     :2;
+				unsigned int 				   :1;
+				unsigned int soft_drive_number :2;
+		} klinkerbell;
+		
