@@ -1,6 +1,6 @@
-/* ex5.c -- ��дһ���������ú�����һ��unsigned int ������λ������תָ��������λ��
-���磬rotate_1(x, 4)��x������λ�����ƶ�4��λ�ã����Ҵ���˶�ʧ��λ�����³�������
-�ˡ�Ҳ����˵����Ѹ�λ�Ƴ���λ�����λ���ڳ����в��Ըú����� */
+/* ex5.c -- 编写一个函数，该函数将一个unsigned int 中所有位向左旋转指定数量的位。
+例如，rotate_1(x, 4)将x中左右位向左移动4个位置，而且从左端丢失的位会重新出现在右
+端。也就是说，会把高位移出的位放入低位。在程序中测试该函数。 */
 #include <stdio.h>
 unsigned int rotate_1(unsigned int, int);
 int pp(int, int);

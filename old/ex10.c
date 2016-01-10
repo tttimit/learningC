@@ -1,4 +1,4 @@
-/* ex10.c -- 重写ex9.c，但是不使用continue或者goto*/
+/* ex10.c -- 閲嶅啓ex9.c锛屼絾鏄笉浣跨敤continue鎴栬�単oto*/
 /*
 q
 Setp 1
