@@ -1,5 +1,5 @@
-/* ex3.c -- ±àÐ´Ò»¸öº¯Êý£¬¸Ãº¯Êý½ÓÊÜÒ»¸öint²ÎÊý£¬²¢·µ»ØÕâ¸ö²ÎÊýÖÐ´ò¿ªÎ»µÄÊýÁ¿¡£
-ÔÚ³ÌÐòÖÐ²âÊÔ¸Ãº¯Êý¡£ */
+/* ex3.c -- ç¼–å†™ä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°æŽ¥å—ä¸€ä¸ªintå‚æ•°ï¼Œå¹¶è¿”å›žè¿™ä¸ªå‚æ•°ä¸­æ‰“å¼€ä½çš„æ•°é‡ã€‚
+åœ¨ç¨‹åºä¸­æµ‹è¯•è¯¥å‡½æ•°ã€‚ */
 #include <stdio.h>
 int countopen(int);
 int main(void)
