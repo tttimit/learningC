@@ -1,0 +1,56 @@
+chapter 16 复习题
+1.
+	a. 没问题
+	b. 没问题
+	c.	命令错误 #define SIX = 6； 这种写成了赋值的形式
+	d.  合法是合法，但是运算顺序会改变，导致出乎意料的情况发生。
+
+2.
+	#define NEW(X) ((X) + 5)
+	
+3.
+	#define MIN(X, Y) (X > Y)?Y:X
+	
+4.
+	#define EVEN_GT(X, Y) (X % 2 ==0) && X > Y?1:0
+	
+5.
+	#define P2(X, Y) printf(#X " is %d and " #Y " is %d\n", X, Y);
+	
+6.
+	a.	#define TF 25
+	b.  #define SPACE ' '
+	c.  #define PS() printf(" ");
+	d.	#define BIG(X) ((X) + 3)
+	e.  #define SUMSQ(X, Y) ((X * X) + (Y * Y))
+
+7.
+	#define P(X) printf("name: " #X "value: %d; address: %p", X, &X);
+	
+8.
+	可以使用条件编译，类似下面代码所示：
+	#ifndef GO
+		... //要暂时跳过的代码
+	#endif
+	然后在这块代码之前定义宏GO，这样执行到这里，就会跳过。要恢复的话，删除
+	掉宏GO的定义即可。
+
+9.
+	#ifdef PR_DATE
+		printf("%d\n", __Date__);
+	#endif
+
+10.
+	main()函数的第二个参数应该是 char * argv[]
+	使用了sqrt（）函数，但是没有包含math.h库
+	
+11.
+	a. qsort(scores, 1000, sizeof(int),comp);
+	b. 降序的话，当第一个数大于第二个数时，返回1，两个数想等时返回0，
+		其他情况时返回-1
+
+12.
+	a.  memcpy(data1, data2, 100 * sizeof(double))
+	b. 	mcmcpy(data1, data2 + 200, 100 * sizeof(double))
+	
+	
