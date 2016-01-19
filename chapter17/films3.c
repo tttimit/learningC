@@ -11,7 +11,7 @@ int main(void)
 	Item temp;
 	/* 初始化*/
 	InitializeList(&movies);
-	if(ListIsFull(movies))
+	if(ListIsFull(&movies))
 	{
 		fprintf(stderr, "No momory available! Bye!\n");
 		exit(1);
@@ -30,7 +30,7 @@ int main(void)
 			fprintf(stderr, "Problem allocating memory\n");
 			break;
 		}
-		if(ListIsFull(movies))
+		if(ListIsFull(&movies))
 		{
 			puts("The list is now full.");
 			break;
@@ -39,14 +39,14 @@ int main(void)
 	}
 	
 	/* 显示 */
-	if(ListIsEmpty(movies))
+	if(ListIsEmpty(&movies))
 		printf("No data entered.");
 	else
 	{
 		printf("Here is the movie list: \n");
-		Traverse(movie, showmovies);
+		Traverse(&movie, showmovies);
 	}
-	printf("You entered %d movies.\n", ListItemCount(movies));
+	printf("You entered %d movies.\n", ListItemCount(&movies));
 	
 	/* 清除*/
 	EmptyTheList(&movies);
