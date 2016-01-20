@@ -1,4 +1,4 @@
-/* films1.c -- example17-1.c -- Ò»¸ö¹ØÓÚµçÓ°ºÍÆÀ¼ÛµÄÊı¾İ½á¹¹*/
+/* films1.c -- example17-1.c -- ä¸€ä¸ªå…³äºç”µå½±å’Œè¯„ä»·çš„æ•°æ®ç»“æ„*/
 #include <stdio.h>
 #define TSIZE 35
 #define FMAX 5

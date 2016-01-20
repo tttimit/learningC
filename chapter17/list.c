@@ -1,19 +1,19 @@
-/* list.c -- example17-5.c -- ¶ÔÍ·ÎÄ¼şµÄÊµÏÖ */
+/* list.c -- example17-5.c -- å¯¹å¤´æ–‡ä»¶çš„å®ç° */
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
 
-/* ¾Ö²¿º¯ÊıÔ­ĞÍ */
+/* å±€éƒ¨å‡½æ•°åŸå‹ */
 static void CopyToNode(Item item, Node * pnode);
 
-/* ½Ó¿Úº¯Êı */
-/* °ÑÁĞ±íÉèÖÃÎª¿ÕÁĞ±í */
+/* æ¥å£å‡½æ•° */
+/* æŠŠåˆ—è¡¨è®¾ç½®ä¸ºç©ºåˆ—è¡¨ */
 void InitializeList(List * plist)
 {
 	* plist = NULL;
 }
 
-/* Èç¹ûÁĞ±íÎª¿ÕÔò·µ»ØÕæ */
+/* å¦‚æœåˆ—è¡¨ä¸ºç©ºåˆ™è¿”å›çœŸ */
 bool ListIsEmpty(const List * plist)
 {
 	if(* plist == NULL)
@@ -22,11 +22,11 @@ bool ListIsEmpty(const List * plist)
 		return false;
 }
 
-/* Èç¹ûÁĞ±íÒÑÂúÔò·µ»ØÕæ */
+/* å¦‚æœåˆ—è¡¨å·²æ»¡åˆ™è¿”å›çœŸ */
 bool ListIsFull(const List * plist)
 {
-	/* µ±ÄÜÉêÇëµ½¿Õ¼äÊ±£¬ËµÃ÷²»ÊÇ¿Õ£»µ±ÉêÇëµ½µÄ¿Õ¼ä·µ»ØÁËNULL£¬ÔòËµÃ÷Ã»ÓĞ¿Õ¼äÁË
-	Ò²¾ÍÊÇListÒÑÂú£¿ */
+	/* å½“èƒ½ç”³è¯·åˆ°ç©ºé—´æ—¶ï¼Œè¯´æ˜ä¸æ˜¯ç©ºï¼›å½“ç”³è¯·åˆ°çš„ç©ºé—´è¿”å›äº†NULLï¼Œåˆ™è¯´æ˜æ²¡æœ‰ç©ºé—´äº†
+	ä¹Ÿå°±æ˜¯Listå·²æ»¡ï¼Ÿ */
 	Node * pt;
 	bool full;
 	
@@ -39,22 +39,22 @@ bool ListIsFull(const List * plist)
 	return full;
 }
 
-/* ·µ»Ø½ÚµãÊı */
+/* è¿”å›èŠ‚ç‚¹æ•° */
 unsigned int ListItemCount(const List * plist)
 {
 	unsigned int count = 0;
-	Node * pnode = *plist;  /*ÉèÖÃµ½ÁĞ±íµÄ¿ªÊ¼´¦*/
+	Node * pnode = *plist;  /*è®¾ç½®åˆ°åˆ—è¡¨çš„å¼€å§‹å¤„*/
 	
 	while(pnode != NULL)
 	{
 		++count;
-		pnode = pnode -> next;  /* °ÑpnodeÉèÖÃÎªÏÂÒ»¸ö½Úµã */
+		pnode = pnode -> next;  /* æŠŠpnodeè®¾ç½®ä¸ºä¸‹ä¸€ä¸ªèŠ‚ç‚¹ */
 	}
 	return count;
 }
 
-/* ´´½¨´æ·ÅÏîÄ¿µÄ½Úµã£¬²¢°ÑËüÌí¼Óµ½ */
-/* ÓÉplistÖ¸ÏòµÄÁĞ±í£¨½ÏÂıµÄÊµÏÖ·½·¨£©Î²²¿ */
+/* åˆ›å»ºå­˜æ”¾é¡¹ç›®çš„èŠ‚ç‚¹ï¼Œå¹¶æŠŠå®ƒæ·»åŠ åˆ° */
+/* ç”±plistæŒ‡å‘çš„åˆ—è¡¨ï¼ˆè¾ƒæ…¢çš„å®ç°æ–¹æ³•ï¼‰å°¾éƒ¨ */
 bool AddItem(Item item, List * plist)
 {
 	Node * pnew;
@@ -62,22 +62,22 @@ bool AddItem(Item item, List * plist)
 	
 	pnew = (Node *)malloc(sizeof(Node));
 	if(pnew == NULL)
-		return false;       /* Ê§°ÜÊ±ÍË³öº¯Êı */
+		return false;       /* å¤±è´¥æ—¶é€€å‡ºå‡½æ•° */
 
 	CopyToNode(item, pnew);
 	pnew->next = NULL;
-	if(scan == NULL)        /* ¿ÕÁĞ±í */
-		* plist = pnew;     /*Òò´Ë°Ñpnew·ÅÔÚÁĞ±íÍ·²¿ */
+	if(scan == NULL)        /* ç©ºåˆ—è¡¨ */
+		* plist = pnew;     /*å› æ­¤æŠŠpnewæ”¾åœ¨åˆ—è¡¨å¤´éƒ¨ */
 	else
 	{
 		while(scan->next != NULL)
-			scan = scan->next;  /* ÕÒµ½ÁĞ±í½áÎ² */
-		scan->next = pnew;      /* °ÑpnewÌí¼Óµ½Ä©Î²´¦ */
+			scan = scan->next;  /* æ‰¾åˆ°åˆ—è¡¨ç»“å°¾ */
+		scan->next = pnew;      /* æŠŠpnewæ·»åŠ åˆ°æœ«å°¾å¤„ */
 	}
 	return true;
 }
 
-/* ·ÃÎÊÃ¿¸ö½Úµã²¢¶ÔËüÃÇ·Ö±ğÖ´ĞĞÓÉpfunÖ¸ÏòµÄº¯Êı */
+/* è®¿é—®æ¯ä¸ªèŠ‚ç‚¹å¹¶å¯¹å®ƒä»¬åˆ†åˆ«æ‰§è¡Œç”±pfunæŒ‡å‘çš„å‡½æ•° */
 void Traverse(const List * plist, void (* pfun)(Item item))
 {
 	Node * pnode = *plist;
@@ -88,22 +88,22 @@ void Traverse(const List * plist, void (* pfun)(Item item))
 	}
 }
 
-/* ÊÍ·ÅÓÉmalloc£¨£©·ÖÅäµÄÄÚ´æ*/
-/* °ÑÁĞ±íÖ¸ÕëÉèÖÃÎªNULL */
+/* é‡Šæ”¾ç”±mallocï¼ˆï¼‰åˆ†é…çš„å†…å­˜*/
+/* æŠŠåˆ—è¡¨æŒ‡é’ˆè®¾ç½®ä¸ºNULL */
 void EmptyTheList(List * plist)
 {
 	Node * psave;
 	while(*plist != NULL)
 	{
-		psave = (*plist)->next;    /*±£´æÏÂÒ»¸ö½Úµã*/
-		free(*plist);     		  /*ÊÍ·Åµ±Ç°½Úµã*/
-		*plist = psave;             /*Ç°½øµ½ÏÂÒ»½Úµã*/
+		psave = (*plist)->next;    /*ä¿å­˜ä¸‹ä¸€ä¸ªèŠ‚ç‚¹*/
+		free(*plist);     		  /*é‡Šæ”¾å½“å‰èŠ‚ç‚¹*/
+		*plist = psave;             /*å‰è¿›åˆ°ä¸‹ä¸€èŠ‚ç‚¹*/
 	}
 }
 
-/* ¾Ö²¿º¯Êı¶¨Òå */
-/* °ÑÒ»¸öÏîÄ¿¸´ÖÆµ½Ò»¸ö½ÚµãÖĞ */
+/* å±€éƒ¨å‡½æ•°å®šä¹‰ */
+/* æŠŠä¸€ä¸ªé¡¹ç›®å¤åˆ¶åˆ°ä¸€ä¸ªèŠ‚ç‚¹ä¸­ */
 static void CopyToNode(Item item, Node * pnode)
 {
-	pnode-> item = item;     /* ½á¹¹¸´ÖÆ */
+	pnode-> item = item;     /* ç»“æ„å¤åˆ¶ */
 }

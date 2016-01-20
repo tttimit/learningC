@@ -1,4 +1,4 @@
-/* films2.c -- example17-2.c -- 使用结构链表 */
+/* films2.c -- example17-2.c -- 浣跨敤缁撴瀯閾捐〃 */
 #include <stdio.h>
 #include <stdlib.h>     //malloc()
 #include <string.h>     //strcpy()
@@ -33,7 +33,7 @@ int main(void)
 		prev = current;
 	}
 	
-	/* 展示列表内容 */
+	/* 灞曠ず鍒楄〃鍐呭 */
 	if(head == NULL)
 		printf("No data entered. ");
 	else
@@ -45,7 +45,7 @@ int main(void)
 		current = current->next;
 	}
 	
-	/* 释放空间 */
+	/* 閲婃斁绌洪棿 */
 	current = head;
 	while(current != NULL)
 	{

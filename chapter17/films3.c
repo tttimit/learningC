@@ -1,5 +1,5 @@
-/* films3.c -- example17-4.c -- Ê¹ÓÃADT·ç¸ñµÄÁ´±í */
-/* ÒªºÍlist.cÒ»Æğ±àÒë*/
+/* films3.c -- example17-4.c -- ä½¿ç”¨ADTé£æ ¼çš„é“¾è¡¨ */
+/* è¦å’Œlist.cä¸€èµ·ç¼–è¯‘*/
 #include <stdio.h>
 #include <stdlib.h> //exit()
 #include "list.h"   //List, Item
@@ -9,7 +9,7 @@ int main(void)
 {
 	List movies;
 	Item temp;
-	/* ³õÊ¼»¯*/
+	/* åˆå§‹åŒ–*/
 	InitializeList(&movies);
 	if(ListIsFull(&movies))
 	{
@@ -17,7 +17,7 @@ int main(void)
 		exit(1);
 	}
 	
-	/* ÊÕ¼¯²¢´æ´¢*/
+	/* æ”¶é›†å¹¶å­˜å‚¨*/
 	puts("Enter first movie title: ");
 	while(gets(temp.title) != NULL && temp.title[0] != '\0')
 	{
@@ -38,7 +38,7 @@ int main(void)
 		puts("Enter next movie title (empty line to stop): ");
 	}
 	
-	/* ÏÔÊ¾ */
+	/* æ˜¾ç¤º */
 	if(ListIsEmpty(&movies))
 		printf("No data entered.");
 	else
@@ -48,7 +48,7 @@ int main(void)
 	}
 	printf("You entered %d movies.\n", ListItemCount(&movies));
 	
-	/* Çå³ı*/
+	/* æ¸…é™¤*/
 	EmptyTheList(&movies);
 	printf("Bye!\n");
 	return 0;

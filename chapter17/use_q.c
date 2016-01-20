@@ -1,4 +1,4 @@
-/* use_q.c -- example17-8.c -- ²âÊÔQueue½Ó¿ÚµÄÇı¶¯³ÌĞò */
+/* use_q.c -- example17-8.c -- æµ‹è¯•Queueæ¥å£çš„é©±åŠ¨ç¨‹åº */
 /* compile with queue.c */
 #include <stdio.h>
 #include "queue.h"
