@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 /* 可以把Item重新定义为合适的类型 */
-typdef struct item
+typedef struct item
 {
 	char petname[20];
 	char petkind[20];
