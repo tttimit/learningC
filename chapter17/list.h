@@ -19,7 +19,14 @@ typedef struct node         //对List来说，每一个元素是一个node
 	struct node * next;     //指向下一个节点的指针
 } Node;                     //Node是struct node
 
-typedef Node * List;        //指向Node序列的指针，也就是指向struct node的指针
+//typedef Node * List;        //指向Node序列的指针，也就是指向struct node的指针
+
+//new defination by ex2
+typedef struct list
+{
+	Node * head;    //point to list head
+	Node * end;     //point to list end
+} List;
 
 /*  初始化一个列表，
 	plist指向一个列表，

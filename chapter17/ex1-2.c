@@ -1,7 +1,8 @@
 /* ex1.c -- 修改程序清单17.2，使其既能正序又能逆序地显示列表。一种方法是是列表
 能够被双向遍历；另一种是使用递归 */
 
-/* 这里我直接把17.2的程序（films2.c）复制过来。用两种方法分别做一下*/
+/* 这里我直接把17.2的程序（films2.c）复制过来。用两种方法分别做一下
+这里使用递归来完成 */
 #include <stdio.h>
 #include <stdlib.h>     //malloc()
 #include <string.h>     //strcpy()
@@ -11,6 +12,8 @@ struct film{
 	int rating;
 	struct film * next;
 };
+
+void GetFilm(struct film * pf);
 
 int main(void)
 {
@@ -36,7 +39,7 @@ int main(void)
 		prev = current;
 	}
 
-	/* 灞曠ず鍒楄〃鍐呭 */
+	/* 展示内容 */
 	if(head == NULL)
 		printf("No data entered. ");
 	else
@@ -47,9 +50,10 @@ int main(void)
 		printf("Movei: %s Rating: %d\n", current->title, current->rating);
 		current = current->next;
 	}
+	puts("--reverse order---");
+	GetFilm(head);
 
-	/* 閲婃斁绌洪棿 */
-	current = head;
+	/* 释放空间 */
 	while(current != NULL)
 	{
 		free(current);
@@ -58,6 +62,13 @@ int main(void)
 	printf("Bye!\n");
 
 	return 0;
+}
+
+void GetFilm(struct film * pf)
+{
+	if(pf->next != NULL)
+		GetFilm(pf->next);
+	printf("Movie: %s Rating: %d\n", pf->title, pf->rating);
 }
 
 

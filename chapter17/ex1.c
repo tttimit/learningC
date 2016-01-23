@@ -18,7 +18,7 @@ int main(void)
 {
 	struct film * head = NULL;
 	struct film * rear = NULL;
-	struct film * prev1, * current;
+	struct film * prev, * current, * next;
 	char input[TSIZE];
 
 	puts("Enter first movei title: ");
@@ -28,11 +28,13 @@ int main(void)
 		if(head == NULL)
 		{
 			head = current;
+			rear = current;
 		}
 		else
 		{
 			prev->next = current;
-			
+			rear = current;
+			current->prev = prev;
 		}
 		current->next = NULL;
 		strcpy(current->title, input);
@@ -44,7 +46,6 @@ int main(void)
 		prev = current;
 	}
 
-	/* 展示列表内容 */
 	if(head == NULL)
 		printf("No data entered. ");
 	else
@@ -55,8 +56,14 @@ int main(void)
 		printf("Movei: %s Rating: %d\n", current->title, current->rating);
 		current = current->next;
 	}
+	puts("----reverse order-----");
+	current = rear;
+	while(current != NULL)
+	{
+		printf("Movie: %s Rating: %d\n", current->title, current->rating);
+		current = current->prev;
+	}
 
-	/* 释放空间 */
 	current = head;
 	while(current != NULL)
 	{

@@ -88,5 +88,3 @@ static void CopyToItem(Node * pn, Item * pi)
 {
 	*pi = pn->item;
 }
-
-

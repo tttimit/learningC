@@ -1,31 +1,32 @@
-/* mall.c -- ä½¿ç”¨Queueæ¥å£ */
-/* ä¸queue.cä¸€èµ·ç¼–è¯‘ */
+/* mall.c -- Ê¹ÓÃQueue½Ó¿Ú */
+/* Óëqueue.cÒ»Æğ±àÒë */
+/* ±à³ÌÁ·Ï°4£¬Ê¹ÓÃÁ½¸ö¶ÓÁĞÄ£ÄâÁ½¸öÌ¯Î» */
 #include <stdio.h>
 #include <stdlib.h>         //rand() srand()
 #include <time.h>           //time()
-#include "queue.h"          //æ”¹å˜Itemçš„typedef
+#include "queue.h"          //¸Ä±äItemµÄtypedef
 #define MIN_PER_HR 60.0
 
-bool newcustomer(double x);    //æœ‰æ–°é¡¾å®¢æ¥å—
-Item customertime(long when);   //è®¾ç½®é¡¾å®¢å‚é‡
+bool newcustomer(double x);    //ÓĞĞÂ¹Ë¿ÍÀ´Âğ
+Item customertime(long when);   //ÉèÖÃ¹Ë¿Í²ÎÁ¿
 
 int main(void)
 {
-	Queue line;        
-	Item temp;          //å…³äºæ–°é¡¾å®¢çš„æ•°æ®
-	int hours;          //æ¨¡æ‹Ÿçš„å°æ—¶æ•°
-	int perhour;       	//æ¯å°æ—¶é¡¾å®¢çš„å¹³å‡æ•°
-	long cycle, cyclelimit; //å¾ªç¯è®¡æ•°å™¨ï¼Œè®¡æ•°å™¨çš„ä¸Šç•Œ
-	long turnaways = 0;     //å› é˜Ÿåˆ—å·²æ»¡è€Œè¢«æ‹’ç»çš„é¡¾å®¢æ•°
-	long customers = 0;     //è¢«åŠ å…¥é˜Ÿåˆ—çš„é¡¾å®¢æ•°
-	long served = 0;        //åœ¨æ¨¡æ‹ŸæœŸé—´å¾—åˆ°æœåŠ¡çš„é¡¾å®¢æ•°
-	long sum_line = 0;      //ç´¯è®¡çš„é˜Ÿåˆ—é•¿åº¦
-	int wait_time = 0;      //ä»å½“å‰åˆ°sigmundç©ºé—²æ‰€éœ€çš„æ—¶é—´
-	double min_per_cust;    //é¡¾å®¢åˆ°æ¥çš„å¹³å‡é—´éš”æ—¶é—´
-	long line_wait = 0;     //é˜Ÿåˆ—ç´¯è®¡ç­‰å¾…æ—¶é—´
-	
+	Queue line;
+	Item temp;          //¹ØÓÚĞÂ¹Ë¿ÍµÄÊı¾İ
+	int hours;          //Ä£ÄâµÄĞ¡Ê±Êı
+	int perhour;       	//Ã¿Ğ¡Ê±¹Ë¿ÍµÄÆ½¾ùÊı
+	long cycle, cyclelimit; //Ñ­»·¼ÆÊıÆ÷£¬¼ÆÊıÆ÷µÄÉÏ½ç
+	long turnaways = 0;     //Òò¶ÓÁĞÒÑÂú¶ø±»¾Ü¾øµÄ¹Ë¿ÍÊı
+	long customers = 0;     //±»¼ÓÈë¶ÓÁĞµÄ¹Ë¿ÍÊı
+	long served = 0;        //ÔÚÄ£ÄâÆÚ¼äµÃµ½·şÎñµÄ¹Ë¿ÍÊı
+	long sum_line = 0;      //ÀÛ¼ÆµÄ¶ÓÁĞ³¤¶È
+	int wait_time = 0;      //´Óµ±Ç°µ½sigmund¿ÕÏĞËùĞèµÄÊ±¼ä
+	double min_per_cust;    //¹Ë¿Íµ½À´µÄÆ½¾ù¼ä¸ôÊ±¼ä
+	long line_wait = 0;     //¶ÓÁĞÀÛ¼ÆµÈ´ıÊ±¼ä
+
 	InitializeQueue(&line);
-	srand((unsigned int)time(0));         //éšæœºåˆå§‹åŒ–rand()å‡½æ•°
+	srand((unsigned int)time(0));         //Ëæ»ú³õÊ¼»¯rand()º¯Êı
 	puts("Case Study: Sigmund Lander's Advice Booth");
 	puts("Enter the number of simulation hours: ");
 	scanf("%d", &hours);
@@ -33,7 +34,7 @@ int main(void)
 	puts("Enter the average number of customers per hour: ");
 	scanf("%d", &perhour);
 	min_per_cust = MIN_PER_HR / perhour;
-	
+
 	for(cycle = 0; cycle < cyclelimit; cycle++)
 	{
 		if(newcustomer(min_per_cust))
@@ -58,7 +59,7 @@ int main(void)
 			wait_time--;
 		sum_line += QueueItemCount(&line);
 	}
-	
+
 	if(customers > 0)
 	{
 		printf("customers accepted: %ld\n", customers);
@@ -71,12 +72,12 @@ int main(void)
 		puts("No customers!");
 	EmptyTheQueue(&line);
 	puts("Bye!");
-	
-	return 0;
-}
 
-/* xæ˜¯é¡¾å®¢åˆ°æ¥çš„å¹³å‡é—´éš”æ—¶é—´ï¼ˆä»¥ç§’è®¡ï¼‰
-    å¦‚æœè¿™1åˆ†é’Ÿå†…æœ‰é¡¾å®¢åˆ°æ¥ï¼Œåˆ™è¿”å›true */
+	return 0;
+}s
+
+/* xÊÇ¹Ë¿Íµ½À´µÄÆ½¾ù¼ä¸ôÊ±¼ä£¨ÒÔÃë¼Æ£©
+    Èç¹ûÕâ1·ÖÖÓÄÚÓĞ¹Ë¿Íµ½À´£¬Ôò·µ»Øtrue */
 bool newcustomer(double x)
 {
 	if(rand() * x / RAND_MAX < 1)
@@ -85,16 +86,16 @@ bool newcustomer(double x)
 		return false;
 }
 
-/* whenæ˜¯é¡¾å®¢åˆ°æ¥çš„æ—¶é—´
-    å‡½æ•°è¿”å›ä¸€ä¸ªItemç»“æ„ï¼Œè¯¥ç»“æ„çš„é¡¾å®¢åˆ°æ¥æ—¶é—´è®¾ç½®ä¸ºwhen
-    éœ€è¦çš„å’¨è¯¢æ—¶é—´è®¾ç½®æœªä¸€ä¸ªèŒƒå›´åœ¨1åˆ°3ä¹‹é—´çš„éšæœºå€¼  */
+/* whenÊÇ¹Ë¿Íµ½À´µÄÊ±¼ä
+    º¯Êı·µ»ØÒ»¸öItem½á¹¹£¬¸Ã½á¹¹µÄ¹Ë¿Íµ½À´Ê±¼äÉèÖÃÎªwhen
+    ĞèÒªµÄ×ÉÑ¯Ê±¼äÉèÖÃÎ´Ò»¸ö·¶Î§ÔÚ1µ½3Ö®¼äµÄËæ»úÖµ  */
 Item customertime(long when)
 {
 	Item cust;
-	
+
 	cust.processtime = rand() % 3 + 1;
 	cust.arrive = when;
-	
+
 	return cust;
 }
 
