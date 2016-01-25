@@ -1,6 +1,6 @@
-/* ex8.c -- 全书最后一道练习题，也就是17-8 -- 修改宠物俱乐部程序，使所有同名的宠
-物存储在相同节点的一个列表中。当用户选择寻找一个宠物时，程序要求用户给出宠物名，
-而后列出所有具有此名字的宠物（连同它们的种类）。 */
+/* ex8.c -- 全锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷习锟解，也锟斤拷锟斤拷17-8 -- 锟睫改筹拷锟斤拷锟斤拷锟街诧拷锟斤拷锟斤拷锟斤拷使锟斤拷锟斤拷同锟斤拷锟侥筹拷
+锟斤拷锟芥储锟斤拷锟斤拷同锟节碉拷锟斤拷一锟斤拷锟叫憋拷锟叫★拷锟斤拷锟矫伙拷选锟斤拷寻锟斤拷一锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷要锟斤拷锟矫伙拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+锟斤拷锟斤拷锟叫筹拷锟斤拷锟叫撅拷锟叫达拷锟斤拷锟街的筹拷锟斤（锟斤拷同锟斤拷锟角碉拷锟斤拷锟洁）锟斤拷 */
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -93,7 +93,11 @@ void showpets(const Tree * pt)
 
 void printitem(Item item)
 {
-	printf("Pet: %-19s Kind: %-19s\n", item.petname, item.petkind);
+    while(item.kindList != NULL)
+    {
+        printf("Pet: %-19s Kind: %-19s\n", item.petname, item.kindList.item);
+        item.kindList = item.kindList.next;
+    }	
 }
 
 void findpet(const Tree * pt)
@@ -114,7 +118,9 @@ void findpet(const Tree * pt)
 	uppercase(temp.petkind);
 	printf("%s the %s ", temp.petname, temp.petkind);
 	if(InTree(&temp, pt))
-		printf("is a member.\n");
+	{
+        Traverse(pt, printitem);
+    }
 	else
 		printf("is not a member.\n");
 }

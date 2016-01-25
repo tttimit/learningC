@@ -66,24 +66,22 @@ bool AddItem(Item * pi, Tree * ptree)
 		pi->count++;		*/
 		
 		/*Ï°Ìâ8ÒªÇó*/
-        
+        addItem(*pi, &SeekItem(pi, ptree).child.kindList);
 	}
 	else
-	{
-		pi->count = 1;
-	}
-	new_node = MakeNode(pi);
-	if(new_node == NULL)
-	{
-		fprintf(stderr, "Couldn't create node\n");
-		return false;
-	}
-	
-	ptree->size++;
-	if(ptree->root == NULL)
-		ptree->root = new_node;
-	else
-		AddNode(new_node, ptree->root);
+    {  
+        new_node = MakeNode(pi);
+        if(new_node == NULL)
+        {
+            fprintf(stderr, "Couldn't create node\n");
+            return false;
+        }
+        ptree->size++;
+        if(ptree->root == NULL)
+            ptree->root = new_node;
+        else
+            AddNode(new_node, ptree->root);
+    }
 	return true;
 }
 
