@@ -47,17 +47,21 @@ int main(void)
                 temp = customertime(cycle); //根据当前时间和随机产生的咨询时间构造一个条目
                 if(line1.items <= line2.items)
                 {
-                	printf("now line1 has %d customers, add 1.\n", line1.items);
+//                	printf("##line1 has %d customers, add 1.\n", line1.items);
                     customers1++;
                     EnQueue(temp, &line1);
                 }    
                 else
                 {
-                	printf("now line2 has %d customers, add 1.\n", line2.items);
+//                	printf("##line2 has %d customers, add 1.\n", line2.items);
                     customers2++;
                     EnQueue(temp, &line2);
                 }    			
 			}
+		}
+		else
+		{
+			puts("--Ops, no customer come--");
 		}
 		if(wait_time1 <= 0 && !QueueIsEmpty(&line1))//咨询师空闲且队列非空
 		{
@@ -68,7 +72,7 @@ int main(void)
 		}
         if(wait_time2 <= 0 && !QueueIsEmpty(&line2))//咨询师空闲且队列非空
 		{
-			DeQueue(&temp2, &line1);
+			DeQueue(&temp2, &line2);
 			wait_time2 = temp2.processtime;
 			line_wait2 += cycle - temp2.arrive;
 			served2++;
@@ -83,19 +87,23 @@ int main(void)
 	
 	if((customers1 + customers2) > 0)
 	{
-		printf("customers accepted: table1: %ld, table2: %ld\n",
-                     customers1, customers2);
-                    
-		printf("customers served:table1: %ld, table2:%ld\n",
-                     served1, served2);
-                    
-		printf("turnaways: %ld\n", turnaways);
-		
-		printf("average queue size:table1: %.2f, table2: %.2lf\n", 
-                (double)sum_line1/ cyclelimit, (double)sum_line2 / cyclelimit);
-                        
-		printf(" average wait time: table1: %.2f, table2: %.2f\n",
-                (double)line_wait1/served1, (double)line_wait2/served2);
+		if(customers1 > 0)
+		{
+			puts("table 1 data:");
+			printf("customers accepted: %ld\n",customers1);
+			printf("customers served:table1: %ld\n", served1);
+			printf("average queue size: %.2lf\n", (double)sum_line1/ cyclelimit);
+			printf(" average wait time: %.2f\n", (double)line_wait1/served1);
+		}
+		if(customers2 > 0)
+		{
+			puts("table 2 data:");
+			printf("customers accepted: %ld\n", customers2);
+			printf("customers served: %ld\n", served2);
+			printf("average queue size: %.2lf\n", (double)sum_line2 / cyclelimit);
+			printf(" average wait time: %.2f\n", (double)line_wait2/served2);
+		}
+		printf("total turnaways: %ld\n", turnaways);
 	}
 	else
 		puts("No customers!");

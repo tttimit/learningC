@@ -48,7 +48,7 @@ int TreeItemCount(const Tree * ptree)
 	return ptree->size;
 }
 
-bool AddItem(const Item * pi, Tree * ptree)
+bool AddItem(Item * pi, Tree * ptree)
 {
 	Node * new_node;
 	
@@ -59,8 +59,18 @@ bool AddItem(const Item * pi, Tree * ptree)
 	}
 	if(SeekItem(pi, ptree).child != NULL)
 	{
-		fprintf(stderr, "Attempted to add duplicate item\n");
-		return false;
+		/*fprintf(stderr, "Attempted to add duplicate item\n");
+		return false; */
+		
+		/*习题7要求，改进型，当有了以后，数量加1
+		pi->count++;		*/
+		
+		/*习题8要求*/
+        
+	}
+	else
+	{
+		pi->count = 1;
 	}
 	new_node = MakeNode(pi);
 	if(new_node == NULL)
@@ -156,32 +166,47 @@ static void AddNode(Node * new_node, Node * root)
 	}
 	else
 	{
-		fprintf(stderr, "location error in AddNode()\n");
-		exit(1);
+		/*fprintf(stderr, "location error in AddNode()\n");
+		exit(1);*/
+		
+		//对练习7添加的修改
+		root->item.count++;
 	}
 }
 
 static bool ToLeft(const Item * i1, const Item * i2)
 {
-	int comp1;
+	/*int comp1;
 
 	if((comp1 = strcmp(i1->petname, i2->petname)) < 0)
 		return true;
 	else if(comp1 == 0 && strcmp(i1->petkind, i2->petkind) < 0)
 		return true;
 	else
+		return false;*/
+	
+	//为编程练习7做的修改	
+	if(strcmp(i1->word, i2->word) < 0)
+		return true;
+	else 
 		return false;
 }
 
 static bool ToRight(const Item * i1, const Item * i2)
 {
-	int comp1;
+	/*int comp1;
 	
 	if((comp1 = strcmp(i1->petname, i2->petname)) > 0)
 		return true;
 	else if(comp1 == 0 && strcmp(i1->petkind, i2->petkind) > 0)
 		return true;
 	else
+		return false;*/
+	
+	//为编程练习7做的修改	
+	if(strcmp(i1->word, i2->word) > 0)
+		return true;
+	else 
 		return false;
 }
 
@@ -225,10 +250,36 @@ static Pair SeekItem(const Item * pi, const Tree * ptree)
 	return look;
 }
 
+int GetCount(const Item * pi, Tree * ptree)
+{
+	Node node;
+	if(TreeIsEmpty(ptree))
+		return -1;
+	else
+	{
+		node = *(ptree->root);
+		while(&node != NULL)
+		{
+			if(ToLeft(pi, &node.item))
+			{
+				node = *node.left;
+			}
+			else if(ToRight(pi, &node.item))
+			{
+				node = *node.right;
+			}
+			else
+			{
+				return node.item.count;
+			}
+		}
+	}
+}
+
 static void DeleteNode(Node **ptr)
 {
 	Node * temp;
-	puts((*ptr)->item.petname);
+//	puts((*ptr)->item.petname);//由于修改了item的结构，这里需要注释掉
 	if((*ptr)->left == NULL)
 	{
 		temp = *ptr;

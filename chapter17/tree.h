@@ -3,15 +3,24 @@
 #ifndef _TREE_H_
 #define _TREE_H_
 #include <stdbool.h>
+#include "list.h"
 
 /* 可以把Item重新定义为合适的类型 */
 typedef struct item
 {
 	char petname[20];
-	char petkind[20];
-} Item;
+	/*char petkind[20];*/
+    List kindList;
+} Item; 
 
-#define MAXITEMS 10
+/*为 编程练习7改写的基本数据项
+typedef struct item 
+{
+	char word[20];
+	int count;
+} Item;	*/
+
+#define MAXITEMS 100
 
 typedef struct node
 {
@@ -34,7 +43,7 @@ bool TreeIsFull(const Tree * ptree);
 
 int TreeItemCount(const Tree * ptree);
 
-bool AddItem(const Item * pi, Tree * ptree);
+bool AddItem(Item * pi, Tree * ptree);
 
 bool InTree(const Item * pi, const Tree * ptree);
 
@@ -43,5 +52,7 @@ bool DeleteItem(const Item * pi, Tree * ptree);
 void Traverse(const Tree * ptree, void (* pfun)(Item item));
 
 void DeleteAll(Tree * ptree);
+
+int GetCount(const Item * pi, Tree * ptree);
 
 #endif

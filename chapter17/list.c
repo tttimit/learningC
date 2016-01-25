@@ -11,13 +11,13 @@ static void CopyToNode(Item item, Node * pnode);
 void InitializeList(List * plist)
 {
 	plist->head = NULL;
-	plist->end = NULL;
+	// plist->end = NULL;
 }
 
 /* 如果列表为空则返回真 */
 bool ListIsEmpty(const List * plist)
 {
-	if(plist->head == NULL)
+	if(plist == NULL)
 		return true;
 	else
 		return false;
@@ -44,7 +44,7 @@ bool ListIsFull(const List * plist)
 unsigned int ListItemCount(const List * plist)
 {
 	unsigned int count = 0;
-	Node * pnode = plist->head;  /*设置到列表的开始处*/
+	Node * pnode = plist;  /*设置到列表的开始处*/
 
 	while(pnode != NULL)
 	{
@@ -60,23 +60,29 @@ unsigned int ListItemCount(const List * plist)
 bool AddItem(Item item, List * plist)
 {
 	Node * pnew;
-//	Node * scan = *plist;
-	Node * end = plist->end;
+	Node * scan = plist;
+	// Node * end = plist->end;
 	pnew = (Node *)malloc(sizeof(Node));
 	if(pnew == NULL)
 		return false;       /* 失败时退出函数 */
 	CopyToNode(item, pnew);
 	pnew->next = NULL;
-	if(plist->head == NULL)
+	if(plist == NULL)
     {
-        plist->head = pnew;
-        plist->end = pnew;
+        plist = pnew;
+        // plist->end = pnew;
     }
-	else
-	{
-		end->next = pnew;
-		end = pnew;
-	}
+	// else
+	// {
+	// 	end->next = pnew;
+	// 	end = pnew;
+	// }
+    else
+    {
+        while(scan != NULL)
+            scan = scan->next;
+        scan->next = pnew;            
+    }
 	return true;
 	
 //	if(scan == NULL)        /* 空列表 */
@@ -93,7 +99,7 @@ bool AddItem(Item item, List * plist)
 /* 访问每个节点并对它们分别执行由pfun指向的函数 */
 void Traverse(const List * plist, void (* pfun)(Item item))
 {
-	Node * pnode = plist->head;
+	Node * pnode = plist;
 	while(pnode != NULL)
 	{
 		(* pfun)(pnode->item);
@@ -106,11 +112,11 @@ void Traverse(const List * plist, void (* pfun)(Item item))
 void EmptyTheList(List * plist)
 {
 	Node * psave;
-	while(plist->head != NULL)
+	while(plist != NULL)
 	{
-		psave = (plist->head)->next;    /*保存下一个节点*/
-		free(plist->head);     		  /*释放当前节点*/
-		plist->head = psave;             /*前进到下一节点*/
+		psave = (plist)->next;    /*保存下一个节点*/
+		free(plist);     		  /*释放当前节点*/
+		plist = psave;             /*前进到下一节点*/
 	}
 }
 

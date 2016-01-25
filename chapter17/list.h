@@ -2,16 +2,13 @@
 #ifndef LIST_H_
 #define LIST_H_
 #include <stdbool.h>
-
 #define TSIZE 45
-struct film     //真正要保存的数据
+/*struct film     //真正要保存的数据
 {
 	char title[TSIZE];
 	int rating;
-};
-
-typedef struct film Item;   //使用Item来强化概念，如需修改数据其他部分可以不变
-							//只修改film部分即可，Item就是struct film
+};*/
+typedef char Item[TSIZE];
 
 typedef struct node         //对List来说，每一个元素是一个node
 {
@@ -19,14 +16,14 @@ typedef struct node         //对List来说，每一个元素是一个node
 	struct node * next;     //指向下一个节点的指针
 } Node;                     //Node是struct node
 
-//typedef Node * List;        //指向Node序列的指针，也就是指向struct node的指针
+typedef Node * List;        //指向Node序列的指针，也就是指向struct node的指针
 
 //new defination by ex2
-typedef struct list
-{
-	Node * head;    //point to list head
-	Node * end;     //point to list end
-} List;
+// typedef struct list
+// {
+// 	Node * head;    //point to list head
+// 	Node * end;     //point to list end
+// } List;
 
 /*  初始化一个列表，
 	plist指向一个列表，
